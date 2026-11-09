@@ -1,0 +1,6 @@
+        first_order        | customers | avg_first_order_rs | reorder_30d_pct 
+---------------------------+-----------+--------------------+-----------------
+ Used a first-order coupon |     17907 |                431 |            76.1
+ Paid full price           |     17146 |                508 |            80.2
+(2 rows)
+

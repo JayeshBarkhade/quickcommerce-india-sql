@@ -1,0 +1,9 @@
+             segment              | customers | pct_customers | avg_orders | avg_spend_rs | pct_revenue 
+----------------------------------+-----------+---------------+------------+--------------+-------------
+ 1 Champions (10+ orders, recent) |      3235 |           8.2 |       16.0 |         7915 |        24.1
+ 2 Loyal regulars                 |     12766 |          32.2 |        6.2 |         3054 |        36.6
+ 3 At-risk regulars (going quiet) |      9431 |          23.8 |        6.8 |         3404 |        30.2
+ 4 New or occasional, recent      |      4745 |          12.0 |        1.5 |          702 |         3.1
+ 5 Lapsed light users             |      9481 |          23.9 |        1.4 |          675 |         6.0
+(5 rows)
+

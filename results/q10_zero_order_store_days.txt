@@ -1,0 +1,16 @@
+ store_id | city_name |   locality    | zero_order_days | days_open | pct_zero_days 
+----------+-----------+---------------+-----------------+-----------+---------------
+       17 | Delhi NCR | Dwarka 2      |              40 |       365 |          11.0
+       62 | Bengaluru | Bellandur     |              37 |       365 |          10.1
+      120 | Lucknow   | Indira Nagar  |              37 |       365 |          10.1
+       78 | Hyderabad | Kukatpally    |              35 |       365 |           9.6
+       93 | Chennai   | Adyar         |              35 |       365 |           9.6
+      109 | Ahmedabad | Bopal         |              34 |       365 |           9.3
+      112 | Ahmedabad | Satellite 2   |              34 |       365 |           9.3
+       53 | Bengaluru | Indiranagar   |              33 |       365 |           9.0
+       61 | Bengaluru | JP Nagar      |              32 |       365 |           8.8
+      110 | Ahmedabad | Navrangpura   |              32 |       365 |           8.8
+       81 | Hyderabad | Hitech City 2 |              31 |       289 |          10.7
+      119 | Lucknow   | Hazratganj    |              31 |       365 |           8.5
+(12 rows)
+

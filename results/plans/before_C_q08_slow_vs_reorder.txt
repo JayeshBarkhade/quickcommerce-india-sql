@@ -1,0 +1,92 @@
+GroupAggregate  (cost=49736.94..49738.74 rows=45 width=80) (actual time=485.642..487.975 rows=4 loops=1)
+  Group Key: (CASE WHEN (e.delivery_minutes <= '10'::numeric) THEN '1  up to 10 min'::text WHEN (e.delivery_minutes <= '15'::numeric) THEN '2  11-15 min'::text WHEN (e.delivery_minutes <= '20'::numeric) THEN '3  16-20 min'::text ELSE '4  over 20 min'::text END)
+  Buffers: shared hit=169441, temp read=2168 written=2172
+  CTE eligible
+    ->  Nested Loop  (cost=41717.75..43065.75 rows=45 width=67) (actual time=233.784..281.744 rows=35053 loops=1)
+          Join Filter: (f.order_ts <= ((max(o_1.order_ts)) - '30 days'::interval))
+          Rows Removed by Join Filter: 4461
+          Buffers: shared hit=6284, temp read=2168 written=2172
+          ->  Finalize Aggregate  (cost=5702.05..5702.06 rows=1 width=8) (actual time=41.362..41.448 rows=1 loops=1)
+                Buffers: shared hit=3201
+                ->  Gather  (cost=5701.84..5702.05 rows=2 width=8) (actual time=41.356..41.443 rows=3 loops=1)
+                      Workers Planned: 2
+                      Workers Launched: 2
+                      Buffers: shared hit=3201
+                      ->  Partial Aggregate  (cost=4701.84..4701.85 rows=1 width=8) (actual time=36.800..36.803 rows=1 loops=3)
+                            Buffers: shared hit=3201
+                            ->  Hash Join  (cost=3.72..4477.11 rows=89889 width=8) (actual time=0.113..29.918 rows=71944 loops=3)
+                                  Hash Cond: (o_1.store_id = s_1.store_id)
+                                  Buffers: shared hit=3201
+                                  ->  Parallel Seq Scan on orders o_1  (cost=0.00..4229.17 rows=89889 width=12) (actual time=0.008..15.896 rows=71944 loops=3)
+                                        Filter: (status = 'delivered'::text)
+                                        Rows Removed by Filter: 1859
+                                        Buffers: shared hit=3076
+                                  ->  Hash  (cost=2.21..2.21 rows=121 width=4) (actual time=0.034..0.035 rows=121 loops=3)
+                                        Buckets: 1024  Batches: 1  Memory Usage: 13kB
+                                        Buffers: shared hit=3
+                                        ->  Seq Scan on dark_stores s_1  (cost=0.00..2.21 rows=121 width=4) (actual time=0.007..0.015 rows=121 loops=3)
+                                              Buffers: shared hit=3
+          ->  Subquery Scan on f  (cost=36015.70..37361.68 rows=134 width=67) (actual time=192.416..233.854 rows=39514 loops=1)
+                Filter: (f.dq_flag IS NULL)
+                Rows Removed by Filter: 144
+                Buffers: shared hit=3083, temp read=2168 written=2172
+                ->  Unique  (cost=36015.70..37094.36 rows=26732 width=67) (actual time=192.414..229.269 rows=39658 loops=1)
+                      Buffers: shared hit=3083, temp read=2168 written=2172
+                      ->  Sort  (cost=36015.70..36555.03 rows=215733 width=67) (actual time=192.413..212.429 rows=215832 loops=1)
+                            Sort Key: o_2.customer_id, o_2.order_ts
+                            Sort Method: external sort  Disk: 8680kB
+                            Buffers: shared hit=3083, temp read=2168 written=2172
+                            ->  Hash Join  (cost=3.72..8051.45 rows=215733 width=67) (actual time=0.058..125.983 rows=215832 loops=1)
+                                  Hash Cond: (o_2.store_id = s_2.store_id)
+                                  Buffers: shared hit=3077
+                                  ->  Seq Scan on orders o_2  (cost=0.00..5843.60 rows=215733 width=47) (actual time=0.006..33.458 rows=215832 loops=1)
+                                        Filter: (status = 'delivered'::text)
+                                        Rows Removed by Filter: 5576
+                                        Buffers: shared hit=3076
+                                  ->  Hash  (cost=2.21..2.21 rows=121 width=4) (actual time=0.033..0.034 rows=121 loops=1)
+                                        Buckets: 1024  Batches: 1  Memory Usage: 13kB
+                                        Buffers: shared hit=1
+                                        ->  Seq Scan on dark_stores s_2  (cost=0.00..2.21 rows=121 width=4) (actual time=0.005..0.013 rows=121 loops=1)
+                                              Buffers: shared hit=1
+  ->  Sort  (cost=6671.18..6671.30 rows=45 width=36) (actual time=482.763..484.480 rows=35053 loops=1)
+        Sort Key: (CASE WHEN (e.delivery_minutes <= '10'::numeric) THEN '1  up to 10 min'::text WHEN (e.delivery_minutes <= '15'::numeric) THEN '2  11-15 min'::text WHEN (e.delivery_minutes <= '20'::numeric) THEN '3  16-20 min'::text ELSE '4  over 20 min'::text END)
+        Sort Method: quicksort  Memory: 2983kB
+        Buffers: shared hit=169441, temp read=2168 written=2172
+        ->  Hash Left Join  (cost=6668.58..6669.95 rows=45 width=36) (actual time=462.742..476.448 rows=35053 loops=1)
+              Hash Cond: (e.customer_id = e_1.customer_id)
+              Buffers: shared hit=169438, temp read=2168 written=2172
+              ->  CTE Scan on eligible e  (cost=0.00..0.90 rows=45 width=36) (actual time=233.788..236.330 rows=35053 loops=1)
+                    Buffers: shared hit=6284, temp read=1086 written=2172
+              ->  Hash  (cost=6668.08..6668.08 rows=40 width=4) (actual time=228.936..228.941 rows=27373 loops=1)
+                    Buckets: 32768 (originally 1024)  Batches: 1 (originally 1)  Memory Usage: 1219kB
+                    Buffers: shared hit=163154, temp read=1082
+                    ->  Unique  (cost=6667.88..6668.08 rows=40 width=4) (actual time=214.379..225.963 rows=27373 loops=1)
+                          Buffers: shared hit=163154, temp read=1082
+                          ->  Sort  (cost=6667.88..6667.98 rows=40 width=4) (actual time=214.376..218.282 rows=80039 loops=1)
+                                Sort Key: e_1.customer_id
+                                Sort Method: quicksort  Memory: 3073kB
+                                Buffers: shared hit=163154, temp read=1082
+                                ->  Nested Loop  (cost=1.60..6666.82 rows=40 width=4) (actual time=63.091..207.306 rows=80039 loops=1)
+                                      Buffers: shared hit=163154, temp read=1082
+                                      ->  Hash Join  (cost=1.46..6660.41 rows=40 width=8) (actual time=63.067..143.332 rows=80039 loops=1)
+                                            Hash Cond: (o.customer_id = e_1.customer_id)
+                                            Join Filter: ((o.order_ts > e_1.order_ts) AND (o.order_ts <= (e_1.order_ts + '30 days'::interval)))
+                                            Rows Removed by Join Filter: 124360
+                                            Buffers: shared hit=3076, temp read=1082
+                                            ->  Seq Scan on orders o  (cost=0.00..5843.60 rows=215733 width=16) (actual time=0.008..32.072 rows=215832 loops=1)
+                                                  Filter: (status = 'delivered'::text)
+                                                  Rows Removed by Filter: 5576
+                                                  Buffers: shared hit=3076
+                                            ->  Hash  (cost=0.90..0.90 rows=45 width=12) (actual time=63.048..63.048 rows=35053 loops=1)
+                                                  Buckets: 65536 (originally 1024)  Batches: 1 (originally 1)  Memory Usage: 2156kB
+                                                  Buffers: temp read=1082
+                                                  ->  CTE Scan on eligible e_1  (cost=0.00..0.90 rows=45 width=12) (actual time=0.001..57.976 rows=35053 loops=1)
+                                                        Buffers: temp read=1082
+                                      ->  Index Only Scan using dark_stores_pkey on dark_stores s  (cost=0.14..0.16 rows=1 width=4) (actual time=0.001..0.001 rows=1 loops=80039)
+                                            Index Cond: (store_id = o.store_id)
+                                            Heap Fetches: 80039
+                                            Buffers: shared hit=160078
+Planning:
+  Buffers: shared hit=160
+Planning Time: 1.130 ms
+Execution Time: 489.321 ms

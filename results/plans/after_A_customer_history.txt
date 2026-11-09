@@ -1,0 +1,24 @@
+Sort  (cost=2161.10..2161.36 rows=103 width=36) (actual time=0.301..0.305 rows=66 loops=1)
+  Sort Key: o.order_ts
+  Sort Method: quicksort  Memory: 29kB
+  Buffers: shared hit=276
+  ->  GroupAggregate  (cost=2154.28..2157.66 rows=103 width=36) (actual time=0.239..0.278 rows=66 loops=1)
+        Group Key: o.order_id
+        Buffers: shared hit=273
+        ->  Sort  (cost=2154.28..2155.06 rows=313 width=30) (actual time=0.234..0.243 rows=177 loops=1)
+              Sort Key: o.order_id
+              Sort Method: quicksort  Memory: 36kB
+              Buffers: shared hit=273
+              ->  Nested Loop Left Join  (cost=0.84..2141.31 rows=313 width=30) (actual time=0.026..0.191 rows=177 loops=1)
+                    Buffers: shared hit=270
+                    ->  Index Scan using idx_orders_customer_ts on orders o  (cost=0.42..187.66 rows=103 width=28) (actual time=0.014..0.023 rows=66 loops=1)
+                          Index Cond: (customer_id = 38202)
+                          Buffers: shared hit=6
+                    ->  Index Only Scan using order_items_pkey on order_items i  (cost=0.42..18.93 rows=4 width=6) (actual time=0.002..0.002 rows=3 loops=66)
+                          Index Cond: (order_id = o.order_id)
+                          Heap Fetches: 177
+                          Buffers: shared hit=264
+Planning:
+  Buffers: shared hit=234
+Planning Time: 0.568 ms
+Execution Time: 0.356 ms

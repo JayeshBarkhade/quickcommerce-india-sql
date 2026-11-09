@@ -1,0 +1,16 @@
+                             issue                             | affected_rows |                                     handling                                     
+---------------------------------------------------------------+---------------+----------------------------------------------------------------------------------
+ Distinct spellings of payment_method (should be 5 methods)    |            16 | Normalised to UPI / CARD / COD / WALLET / NETBANKING
+ Distinct spellings of order status (should be 2)              |             6 | lower(trim()), "canceled" -> "cancelled"
+ Orders delivered BEFORE they were placed                      |           400 | delivered_ts set NULL, row kept, dq_flag = delivered_before_order
+ Status delivered but no delivery time                         |           300 | Row kept, dq_flag = delivered_missing_date; excluded from delivery-time analysis
+ Cancelled orders that still carry a delivery time             |           150 | delivered_ts set NULL, dq_flag = cancelled_with_delivery_ts
+ Double-posted order lines (same order_id + line_no twice)     |          3363 | ROW_NUMBER() keeps one copy
+ Order lines with quantity 0                                   |            60 | Dropped
+ Ratings outside 1-5                                           |            80 | Dropped
+ Orders with more than one rating row                          |           754 | Latest valid rating kept
+ City spellings that need the alias table (customers + stores) |         18746 | Mapped through qc.city_alias (Bangalore -> Bengaluru, Gurgaon -> Delhi NCR ...)
+ Unmapped city spellings (must be 0 or the load fails loudly)  |             0 | NOT NULL constraint on city_id surfaces any gap
+ Distinct spellings of acquisition_channel (should be 5)       |            13 | lower / trim / spaces to underscores
+(12 rows)
+

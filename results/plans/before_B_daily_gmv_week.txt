@@ -1,0 +1,24 @@
+Finalize GroupAggregate  (cost=5775.59..6254.60 rows=3687 width=44) (actual time=16.593..17.478 rows=7 loops=1)
+  Group Key: ((order_ts)::date)
+  Buffers: shared hit=3150
+  ->  Gather Merge  (cost=5775.59..6168.57 rows=3072 width=44) (actual time=16.545..17.460 rows=21 loops=1)
+        Workers Planned: 2
+        Workers Launched: 2
+        Buffers: shared hit=3150
+        ->  Partial GroupAggregate  (cost=4775.57..4813.97 rows=1536 width=44) (actual time=12.121..12.358 rows=7 loops=3)
+              Group Key: ((order_ts)::date)
+              Buffers: shared hit=3150
+              ->  Sort  (cost=4775.57..4779.41 rows=1536 width=10) (actual time=12.074..12.170 rows=1253 loops=3)
+                    Sort Key: ((order_ts)::date)
+                    Sort Method: quicksort  Memory: 109kB
+                    Buffers: shared hit=3150
+                    Worker 0:  Sort Method: quicksort  Memory: 57kB
+                    Worker 1:  Sort Method: quicksort  Memory: 102kB
+                    ->  Parallel Seq Scan on orders  (cost=0.00..4694.27 rows=1536 width=10) (actual time=0.017..11.780 rows=1253 loops=3)
+                          Filter: ((order_ts >= '2025-06-02 00:00:00'::timestamp without time zone) AND (order_ts < '2025-06-09 00:00:00'::timestamp without time zone) AND (status = 'delivered'::text))
+                          Rows Removed by Filter: 72550
+                          Buffers: shared hit=3076
+Planning:
+  Buffers: shared hit=119
+Planning Time: 0.322 ms
+Execution Time: 17.567 ms

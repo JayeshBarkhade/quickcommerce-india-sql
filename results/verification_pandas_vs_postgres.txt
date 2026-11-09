@@ -1,0 +1,15 @@
+check                                                   pandas        postgres  result
+delivered revenue (Rs)                          106,417,520.65  106,417,520.65  OK
+delivered orders                                       215,832         215,832  OK
+customers with a delivered order                        39,658          39,658  OK
+Q9 top-20% revenue share (%)                              54.3            54.3  OK
+Q8 customers (1  up to 10 min)                          19,889          19,889  OK
+Q8 reorder rate % (1  up to 10 min)                       80.4            80.4  OK
+Q8 customers (2  11-15 min)                              9,911           9,911  OK
+Q8 reorder rate % (2  11-15 min)                          77.9            77.9  OK
+Q8 customers (3  16-20 min)                              3,468           3,468  OK
+Q8 reorder rate % (3  16-20 min)                          72.0            72.0  OK
+Q8 customers (4  over 20 min)                            1,785           1,785  OK
+Q8 reorder rate % (4  over 20 min)                        65.3            65.3  OK
+RFM: mv_rfm segment sizes == Q4                              1               1  OK
+orders where lines+fees-discount <> paid                     0               0  OK

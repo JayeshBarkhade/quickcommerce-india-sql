@@ -1,0 +1,16 @@
+Finalize Aggregate  (cost=8788.74..8788.75 rows=1 width=48) (actual time=26.304..26.356 rows=1 loops=1)
+  Buffers: shared hit=4284
+  ->  Gather  (cost=8788.51..8788.72 rows=2 width=48) (actual time=26.274..26.328 rows=3 loops=1)
+        Workers Planned: 2
+        Workers Launched: 2
+        Buffers: shared hit=4284
+        ->  Partial Aggregate  (cost=7788.51..7788.52 rows=1 width=48) (actual time=20.995..20.996 rows=1 loops=3)
+              Buffers: shared hit=4284
+              ->  Parallel Seq Scan on order_items  (cost=0.00..7786.51 rows=160 width=8) (actual time=0.098..20.875 rows=233 loops=3)
+                    Filter: (product_id = 63)
+                    Rows Removed by Filter: 223927
+                    Buffers: shared hit=4284
+Planning:
+  Buffers: shared hit=101
+Planning Time: 0.282 ms
+Execution Time: 26.409 ms

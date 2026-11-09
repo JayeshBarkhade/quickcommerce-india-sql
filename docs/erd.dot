@@ -1,0 +1,16 @@
+digraph ERD {
+  rankdir=LR; node [shape=record, fontname="Helvetica", fontsize=10, style=filled, fillcolor="#f4f7fb"]; edge [color="#555555", arrowsize=0.7];
+  cities [label="{cities|city_id PK\lcity_name\ltier\l}"];
+  city_alias [label="{city_alias|alias PK\lcity_id FK\l}"];
+  dark_stores [label="{dark_stores|store_id PK\lcity_id FK\llocality\lopened_date\l}"];
+  customers [label="{customers|customer_id PK\lcity_id FK\lsignup_date\lacquisition_channel\l}"];
+  product_categories [label="{product_categories|category_id PK\lcategory_name\l}"];
+  products [label="{products|product_id PK\lcategory_id FK\lproduct_name\lmrp\l}"];
+  orders [label="{orders|order_id PK\lcustomer_id FK\lstore_id FK\lorder_ts\lpromised_minutes\ldelivered_ts\lstatus\lpayment_method\ldelivery_fee, handling_fee\ldiscount_amount\lamount_paid\ldq_flag\l}"];
+  order_items [label="{order_items|order_id PK,FK\lline_no PK\lproduct_id FK\lquantity\lunit_price\l}"];
+  order_feedback [label="{order_feedback|order_id PK,FK\lrating\ltag\lcreated_ts\l}"];
+  weather_daily [label="{weather_daily|city_id PK,FK\lday PK\lrainfall_mm\l}"];
+  city_alias -> cities; dark_stores -> cities; customers -> cities; weather_daily -> cities;
+  products -> product_categories; orders -> customers; orders -> dark_stores;
+  order_items -> orders; order_items -> products; order_feedback -> orders;
+}

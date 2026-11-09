@@ -1,0 +1,7 @@
+             weather             | orders | avg_delivery_min | p90_min | within_promise_pct 
+---------------------------------+--------+------------------+---------+--------------------
+ 1 No or trace rain (under 2 mm) | 175158 |              9.8 |    15.7 |               70.9
+ 2 Light rain (2 to 10 mm)       |  21043 |             11.2 |    17.9 |               59.7
+ 3 Heavy rain (10 mm or more)    |  18931 |             14.4 |    22.5 |               38.3
+(3 rows)
+

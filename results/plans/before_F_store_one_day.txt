@@ -1,0 +1,16 @@
+Finalize Aggregate  (cost=5690.69..5690.70 rows=1 width=40) (actual time=12.330..13.658 rows=1 loops=1)
+  Buffers: shared hit=3076
+  ->  Gather  (cost=5690.46..5690.67 rows=2 width=40) (actual time=10.876..13.639 rows=3 loops=1)
+        Workers Planned: 2
+        Workers Launched: 2
+        Buffers: shared hit=3076
+        ->  Partial Aggregate  (cost=4690.46..4690.47 rows=1 width=40) (actual time=7.823..7.823 rows=1 loops=3)
+              Buffers: shared hit=3076
+              ->  Parallel Seq Scan on orders  (cost=0.00..4690.43 rows=5 width=6) (actual time=1.545..7.811 rows=4 loops=3)
+                    Filter: ((order_ts >= '2025-10-20 00:00:00'::timestamp without time zone) AND (order_ts < '2025-10-21 00:00:00'::timestamp without time zone) AND (store_id = 107))
+                    Rows Removed by Filter: 73799
+                    Buffers: shared hit=3076
+Planning:
+  Buffers: shared hit=100
+Planning Time: 0.374 ms
+Execution Time: 13.751 ms

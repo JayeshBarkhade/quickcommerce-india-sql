@@ -1,0 +1,13 @@
+Aggregate  (cost=1165.43..1165.44 rows=1 width=48) (actual time=1.858..1.859 rows=1 loops=1)
+  Buffers: shared hit=646
+  ->  Bitmap Heap Scan on order_items  (cost=7.40..1160.63 rows=384 width=8) (actual time=0.214..1.661 rows=700 loops=1)
+        Recheck Cond: (product_id = 63)
+        Heap Blocks: exact=642
+        Buffers: shared hit=646
+        ->  Bitmap Index Scan on idx_items_product  (cost=0.00..7.30 rows=384 width=0) (actual time=0.130..0.131 rows=700 loops=1)
+              Index Cond: (product_id = 63)
+              Buffers: shared hit=4
+Planning:
+  Buffers: shared hit=117
+Planning Time: 0.319 ms
+Execution Time: 1.929 ms

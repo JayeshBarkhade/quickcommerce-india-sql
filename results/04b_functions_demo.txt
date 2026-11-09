@@ -1,0 +1,22 @@
+-- customer_profile() for the top spender
+ orders | total_spend_rs | first_order | last_order | avg_rating |             segment              
+--------+----------------+-------------+------------+------------+----------------------------------
+     65 |          34893 | 2025-01-01  | 2025-11-25 |       3.50 | 1 Champions (10+ orders, recent)
+(1 row)
+
+-- get_customer_segment() for the same customer
+             segment              
+----------------------------------
+ 1 Champions (10+ orders, recent)
+(1 row)
+
+-- sanity: segment sizes from the materialised view (must match Q4)
+             segment              | customers 
+----------------------------------+-----------
+ 1 Champions (10+ orders, recent) |      3235
+ 2 Loyal regulars                 |     12766
+ 3 At-risk regulars (going quiet) |      9431
+ 4 New or occasional, recent      |      4745
+ 5 Lapsed light users             |      9481
+(5 rows)
+

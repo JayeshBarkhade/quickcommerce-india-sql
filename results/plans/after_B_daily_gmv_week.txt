@@ -1,0 +1,18 @@
+GroupAggregate  (cost=3634.04..3731.37 rows=3893 width=44) (actual time=4.352..4.915 rows=7 loops=1)
+  Group Key: ((order_ts)::date)
+  Buffers: shared hit=1921
+  ->  Sort  (cost=3634.04..3643.78 rows=3893 width=10) (actual time=4.253..4.447 rows=3758 loops=1)
+        Sort Key: ((order_ts)::date)
+        Sort Method: quicksort  Memory: 243kB
+        Buffers: shared hit=1921
+        ->  Bitmap Heap Scan on orders  (cost=84.32..3401.89 rows=3893 width=10) (actual time=0.703..3.741 rows=3758 loops=1)
+              Recheck Cond: ((order_ts >= '2025-06-02 00:00:00'::timestamp without time zone) AND (order_ts < '2025-06-09 00:00:00'::timestamp without time zone) AND (status = 'delivered'::text))
+              Heap Blocks: exact=1905
+              Buffers: shared hit=1918
+              ->  Bitmap Index Scan on idx_orders_delivered_ts  (cost=0.00..83.35 rows=3893 width=0) (actual time=0.433..0.434 rows=3758 loops=1)
+                    Index Cond: ((order_ts >= '2025-06-02 00:00:00'::timestamp without time zone) AND (order_ts < '2025-06-09 00:00:00'::timestamp without time zone))
+                    Buffers: shared hit=13
+Planning:
+  Buffers: shared hit=188
+Planning Time: 0.440 ms
+Execution Time: 4.970 ms

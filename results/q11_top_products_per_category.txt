@@ -1,0 +1,22 @@
+          category           | rank_in_category |           product_name            | units | revenue_rs 
+-----------------------------+------------------+-----------------------------------+-------+------------
+ Atta, Rice & Dal            |                1 | Besan - Brand B 1 kg              |  9626 |    4347577
+ Atta, Rice & Dal            |                2 | Sona Masoori Rice - Brand D 500 g |  5223 |    1792147
+ Atta, Rice & Dal            |                3 | Toor Dal - Brand A 1 kg           |  2292 |    1253244
+ Breakfast & Instant Food    |                1 | Instant Poha - Brand A 1 kg       |  5791 |    2117622
+ Breakfast & Instant Food    |                2 | Oats - Brand B 250 g              | 10931 |    1880464
+ Breakfast & Instant Food    |                3 | Instant Poha - Brand D 1 kg       |  3170 |    1757898
+ Oil & Masala                |                1 | Salt - Brand C 1 kg               |  7854 |    2222501
+ Oil & Masala                |                2 | Red Chilli Powder - Brand B 1 kg  |  4229 |    1383941
+ Oil & Masala                |                3 | Turmeric Powder - Brand B 1 kg    |  1417 |     555517
+ Tea, Coffee & Health Drinks |                1 | Malt Drink - Brand C 1 kg         |  3605 |    1747750
+ Tea, Coffee & Health Drinks |                2 | Green Tea - Brand A 250 g         |  6756 |     991220
+ Tea, Coffee & Health Drinks |                3 | Green Tea - Brand D 1 kg          |  2022 |     900100
+ Dairy, Bread & Eggs         |                1 | Brown Bread - Brand D 500 g       | 10847 |     805342
+ Dairy, Bread & Eggs         |                2 | Brown Bread - Brand D 1 kg        |  7520 |     770702
+ Dairy, Bread & Eggs         |                3 | Butter - Brand A 250 g            | 20293 |     610424
+ Cleaning Essentials         |                1 | Garbage Bags - Brand A 1 kg       |  6334 |    2524905
+ Cleaning Essentials         |                2 | Dishwash Liquid - Brand B 1 kg    |  2461 |     721025
+ Cleaning Essentials         |                3 | Garbage Bags - Brand C 1 kg       |  1829 |     607087
+(18 rows)
+

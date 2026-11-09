@@ -1,0 +1,19 @@
+ city_name | rank_in_city | customer_id | orders | spend_rs 
+-----------+--------------+-------------+--------+----------
+ Bengaluru |            1 |         688 |     65 |    34893
+ Bengaluru |            2 |       32284 |     53 |    32119
+ Bengaluru |            3 |       13598 |     58 |    31296
+ Delhi NCR |            1 |        7452 |     59 |    31213
+ Delhi NCR |            2 |       39665 |     60 |    30085
+ Delhi NCR |            3 |        8604 |     39 |    29432
+ Hyderabad |            1 |       35856 |     44 |    25390
+ Hyderabad |            2 |       31206 |     47 |    25133
+ Hyderabad |            3 |       36427 |     48 |    24919
+ Mumbai    |            1 |         453 |     53 |    27117
+ Mumbai    |            2 |        6896 |     40 |    24546
+ Mumbai    |            3 |       16412 |     36 |    21168
+ Pune      |            1 |        4486 |     58 |    31640
+ Pune      |            2 |       39311 |     59 |    29076
+ Pune      |            3 |        5984 |     45 |    23473
+(15 rows)
+

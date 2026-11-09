@@ -1,0 +1,9 @@
+ acquisition_channel | eligible_customers | never_reordered | never_reordered_pct 
+---------------------+--------------------+-----------------+---------------------
+ referral            |               3608 |             673 |                18.7
+ app_store           |               4127 |             748 |                18.1
+ paid_social         |               5554 |             996 |                17.9
+ influencer          |               2429 |             412 |                17.0
+ organic             |               9464 |            1557 |                16.5
+(5 rows)
+

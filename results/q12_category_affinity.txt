@@ -1,0 +1,14 @@
+        category_a         |         category_b          | orders_together | support_pct | lift 
+---------------------------+-----------------------------+-----------------+-------------+------
+ Cleaning Essentials       | Personal Care               |           12580 |        5.83 | 3.43
+ Sweet Tooth               | Tea, Coffee & Health Drinks |           14206 |        6.58 | 3.19
+ Atta, Rice & Dal          | Oil & Masala                |           16925 |        7.84 | 2.76
+ Breakfast & Instant Food  | Dairy, Bread & Eggs         |           32068 |       14.86 | 1.90
+ Cold Drinks & Juices      | Snacks & Munchies           |           41210 |       19.09 | 1.63
+ Baby Care                 | Fruits & Vegetables         |            2775 |        1.29 | 1.08
+ Electronics & Accessories | Fruits & Vegetables         |            1889 |        0.88 | 1.07
+ Fruits & Vegetables       | Pet Care                    |            1845 |        0.85 | 1.05
+ Cleaning Essentials       | Electronics & Accessories   |             644 |        0.30 | 0.98
+ Electronics & Accessories | Personal Care               |             727 |        0.34 | 0.97
+(10 rows)
+

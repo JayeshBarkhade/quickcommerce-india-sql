@@ -1,0 +1,19 @@
+                           check_name                            | problems 
+-----------------------------------------------------------------+----------
+ row count: cities                                               |       10
+ row count: dark_stores                                          |      121
+ row count: products                                             |      936
+ row count: weather_daily                                        |     3650
+ row count: customers                                            |    40000
+ row count: order_feedback                                       |    75424
+ rows repaired and flagged in orders (informational)             |      850
+ row count: orders                                               |   221408
+ cancelled orders with a delivery time                           |        0
+ delivered_ts before order_ts                                    |        0
+ orders without a customer (orphans)                             |        0
+ row count: order_items                                          |   672481
+ order lines without a product (orphans)                         |        0
+ orders without any order line                                   |        0
+ amount_paid <> lines + fees - discount (proves dedupe is right) |        0
+(15 rows)
+
